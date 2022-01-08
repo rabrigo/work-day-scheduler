@@ -3,16 +3,16 @@
 // TODO: lock button functionality
 
 var timeDisplay = document.querySelector('#currentDay');
-timeDisplay.textContent = moment().format('h:mm:ss A');
+timeDisplay.textContent = moment().format('dddd');
 var allTimeSlots = document.querySelectorAll('div.input-group');
 var allTimeSlots2 = $('.input-group');
-var currentTime = 1302;
+var currentTime = Number(moment().format('HHHH'));
 // console.log(allTimeSlots);
 
 setInterval(function () {
         // currentTime = moment().format('HHMM');
         // currentTime = 1302;
-        timeDisplay.textContent = currentTime;
+        // timeDisplay.textContent = currentTime;
         pastPresentFuture();
         }, 1000
 );
@@ -40,6 +40,7 @@ function pastPresentFuture () {
 
 console.log(allTimeSlots2);
 allTimeSlots2.on('click', '.lock-button', function(event) {
-        var btnPressed = event.target;
-        console.log(btnPressed);
+        var leftTextArea = $(event.target).parent().parent().children('textarea');
+        leftTextArea.attr("disabled", "true");
+        // console.log(btnPressed);
 });
