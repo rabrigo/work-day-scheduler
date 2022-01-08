@@ -1,9 +1,5 @@
-// TODO: fix jumbotron time format
-// TODO: set currentTime to actual time
-// TODO: lock button functionality
-
 var timeDisplay = document.querySelector('#currentDay');
-timeDisplay.textContent = moment().format('dddd');
+timeDisplay.textContent = moment().format('dddd, MMMM Do');
 var allTimeSlots = document.querySelectorAll('div.input-group');
 var allTimeSlots2 = $('.input-group');
 var currentTime = Number(moment().format('HHHH'));
@@ -12,7 +8,7 @@ var currentTime = Number(moment().format('HHHH'));
 setInterval(function () {
         // currentTime = moment().format('HHMM');
         // currentTime = 1302;
-        // timeDisplay.textContent = currentTime;
+        timeDisplay.textContent = moment().format('dddd, MMMM Do');
         pastPresentFuture();
         }, 1000
 );
@@ -41,6 +37,13 @@ function pastPresentFuture () {
 console.log(allTimeSlots2);
 allTimeSlots2.on('click', '.lock-button', function(event) {
         var leftTextArea = $(event.target).parent().parent().children('textarea');
-        leftTextArea.attr("disabled", "true");
+        if (!(leftTextArea.attr("disabled"))) {
+                leftTextArea.attr("disabled", "true");
+                $(event.target).text('Unlock');
+        } else {
+                leftTextArea.removeAttr("disabled");
+                $(event.target).text('Lock');
+        }
+
         // console.log(btnPressed);
 });
